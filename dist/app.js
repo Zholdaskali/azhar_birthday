@@ -14,7 +14,7 @@
     lines.push(part); return lines.join('\r\n');
   };
   const guest = new URLSearchParams(window.location.search).get('to');
-  if (guest && guest.trim()) $('greeting').textContent = `${guest.trim().slice(0, 60)}, келесің ғой? 💗`;
+  if (guest && guest.trim()) { $('greeting').textContent = `${guest.trim().slice(0, 60)}, келесің ғой? 💗`; $('greeting').hidden = false; }
   const message = `${guest ? guest.trim().slice(0, 60) + ': ' : ''}Ажар, туған күніңе келемін! 🎀 7 қараша, 20:00. Кездескенше! 💗`;
   const phone = event.whatsapp.replace(/\D/g, '');
   $('rsvp-link').href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;

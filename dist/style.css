@@ -6,3 +6,9 @@
 @media(max-width:680px){.photo-grid figure:last-child:nth-child(odd){width:100%;margin-top:0;transform:rotate(-2deg)}}
 
 .photo-grid img{height:auto}
+
+.azhar-title{font-family:var(--script);font-size:118px;font-weight:500;letter-spacing:-3px;line-height:1.1;position:relative;display:inline-block;padding-right:20px;margin:28px 0 10px;color:var(--rose)}
+.azhar-title>svg{position:absolute;width:70px;height:50px;top:-14px;right:-18px;transform:rotate(12deg)}
+.notebook .letter-sign em{font-style:normal}
+@media(max-width:680px){.azhar-title{font-size:100px;margin-top:30px;letter-spacing:-2px;padding-right:0}.azhar-title>svg{width:57px;height:42px;right:-18px;top:-15px}}
+@media(max-width:360px){.azhar-title{font-size:86px}}
