@@ -55,6 +55,7 @@
     if (!photo.src || !/^assets\/[a-zA-Z0-9_./-]+$/.test(photo.src) || photo.src.includes('..')) continue;
     const figure = document.createElement('figure'); const img = document.createElement('img');
     img.src = photo.src; img.alt = photo.alt || 'Ажар'; img.loading = 'lazy'; img.decoding = 'async';
+    if (photo.width && photo.height) { img.width = photo.width; img.height = photo.height; }
     img.addEventListener('error', () => { figure.remove(); $('photos').hidden = !$('photo-grid').children.length; });
     const open = document.createElement('button');
     open.type = 'button'; open.className = 'photo-open'; open.setAttribute('aria-label', photo.alt + ' — үлкейту');
