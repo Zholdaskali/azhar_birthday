@@ -4,3 +4,5 @@
 /* A third print sits between the first two, like a page in a photo album. */
 .photo-grid figure:last-child:nth-child(odd){grid-column:1/-1;width:65%;justify-self:center;margin-top:12px;transform:rotate(-2deg)}
 @media(max-width:680px){.photo-grid figure:last-child:nth-child(odd){width:100%;margin-top:0;transform:rotate(-2deg)}}
+
+.photo-grid img{height:auto}
