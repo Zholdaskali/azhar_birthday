@@ -14,7 +14,7 @@
     lines.push(part); return lines.join('\r\n');
   };
   const guest = new URLSearchParams(window.location.search).get('to');
-  if (guest && guest.trim()) $('greeting').textContent = `${guest.trim().slice(0, 60)}, сүйікті құрбым!`;
+  if (guest && guest.trim()) $('greeting').textContent = `${guest.trim().slice(0, 60)}, келесің ғой? 💗`;
   const message = `${guest ? guest.trim().slice(0, 60) + ': ' : ''}Ажар, туған күніңе келемін! 🎀 7 қараша, 20:00. Кездескенше! 💗`;
   const phone = event.whatsapp.replace(/\D/g, '');
   $('rsvp-link').href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -56,7 +56,16 @@
     const figure = document.createElement('figure'); const img = document.createElement('img');
     img.src = photo.src; img.alt = photo.alt || 'Ажар'; img.loading = 'lazy'; img.decoding = 'async';
     img.addEventListener('error', () => { figure.remove(); $('photos').hidden = !$('photo-grid').children.length; });
-    figure.append(img); $('photo-grid').append(figure); $('photos').hidden = false;
+    const open = document.createElement('button');
+    open.type = 'button'; open.className = 'photo-open'; open.setAttribute('aria-label', photo.alt + ' — үлкейту');
+    open.append(img);
+    const caption = document.createElement('figcaption'); caption.textContent = photo.caption || 'our kind of happy ♡';
+    open.addEventListener('click', () => {
+      $('photo-full').src = photo.src; $('photo-full').alt = photo.alt || 'Құрбылар';
+      $('photo-caption').textContent = caption.textContent;
+      if (typeof $('photo-dialog').showModal === 'function') $('photo-dialog').showModal();
+    });
+    figure.append(open, caption); $('photo-grid').append(figure); $('photos').hidden = false;
   }
   $('share-button').addEventListener('click', async () => {
     const url = new URL(window.location.href); url.hash = '';
@@ -77,5 +86,17 @@
       } else { $('share-feedback').textContent = url.href; }
     }
   });
+  $('photo-close').addEventListener('click', () => $('photo-dialog').close());
+  $('photo-dialog').addEventListener('click', event => { if (event.target === $('photo-dialog')) $('photo-dialog').close(); });
+  const welcome = $('welcome');
+  function enter(withMusic) {
+    if (withMusic) window.AzharSound?.start();
+    welcome.close();
+    $('main-content').setAttribute('tabindex', '-1');
+    $('main-content').focus({ preventScroll: true });
+  }
+  $('open-music').addEventListener('click', () => enter(true));
+  $('open-silent').addEventListener('click', () => enter(false));
+  if (typeof welcome.showModal === 'function' && !window.location.hash) welcome.showModal();
   $('share-dialog').addEventListener('click', event => { if (event.target === $('share-dialog')) $('share-dialog').close(); });
 })();
