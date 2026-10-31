@@ -41,7 +41,7 @@
       'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Azhar Birthday//Invitation//KK',
       'CALSCALE:GREGORIAN', 'BEGIN:VEVENT', 'UID:azhar-birthday-20261107@invitation.local',
       `DTSTAMP:${icsDate(new Date())}`, `DTSTART:${icsDate(start)}`,
-      `SUMMARY:${escapeIcs('Ажар · 22 · Birthday Sleepover Party 🎀')}`,
+      `SUMMARY:${escapeIcs('Ажар · 22 · Birthday Party 🎀')}`,
       `LOCATION:${escapeIcs(event.city + ', ' + event.address)}`,
       `DESCRIPTION:${escapeIcs('Сүйікті пижамаңды және көтеріңкі көңіл күйіңді алып кел! 🎀\nКелетініңді WhatsApp арқылы хабарла: +' + phone)}`,
       'END:VEVENT', 'END:VCALENDAR'
@@ -73,7 +73,7 @@
     $('share-feedback').textContent = '';
     try {
       if (navigator.share) {
-        await navigator.share({ title: 'Ажар · Birthday Sleepover Party 🎀', text: 'Қыздарым, туған күнімде бірге болайық! 7 қараша · 20:00 ♡', url: url.href });
+        await navigator.share({ title: 'Ажар · Birthday Party 🎀', text: 'Қыздарым, туған күнімде бірге болайық! 7 қараша · 20:00 ♡', url: url.href });
         return;
       }
     } catch (error) { if (error.name === 'AbortError') return; }
